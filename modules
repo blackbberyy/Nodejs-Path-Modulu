@@ -1,0 +1,40 @@
+PATH MODÜLÜ
+Node.js'in built-in modüllerinden biri olan "path" modülü, dosya ve dizin yollarını yönetmek için kullanılan işlevleri içerir. Bu modül, özellikle farklı işletim sistemlerindeki dosya yollarının farklı biçimlerde gösterilmesi nedeniyle, dosya yollarını güvenli ve kolay bir şekilde birleştirmek, ayrıştırmak veya değiştirmek için kullanışlı bir araçtır.
+Path modülü ile kullanabileceğiniz bazı işlevler şunlardır:
+path.join(): Bu işlev, birden fazla dizeyi birleştirerek, doğru bir şekilde biçimlendirilmiş bir dosya yolu oluşturur.
+const path = require('path');
+const filePath = path.join('dir1', 'dir2', 'file.txt');
+console.log(filePath); // "dir1/dir2/file.txt" (Unix tabanlı sistemlerde)
+
+path.resolve(): Bu işlev, dosya yollarını mutlak yola dönüştürür ve birden fazla yol belirttiğinizde, bu yolların birleşiminden oluşan bir yol döndürür.
+const path = require('path');
+const absPath = path.resolve('dir1', 'dir2', 'file.txt');
+console.log(absPath); // "/Users/user/dir1/dir2/file.txt" (MacOS/Linux işletim sistemlerinde)
+
+path.parse(): Bu işlev, dosya yollarını parçalara ayırır ve sonuç olarak bir nesne döndürür.
+const path = require('path');
+const parsedPath = path.parse('/Users/user/dir1/dir2/file.txt');
+console.log(parsedPath);
+// {
+//     root: '/',
+//     dir: '/Users/user/dir1/dir2',
+//     base: 'file.txt',
+//     ext: '.txt',
+//     name: 'file'
+// }
+
+path.normalize(): Bu işlev, verilen dosya yolunu normalleştirir. Örneğin, gereksiz işaretleri kaldırır ve birleştirme işlemlerini gerçekleştirir.
+const path = require('path');
+const normalizedPath = path.normalize('/dir1/dir2/../dir3/./file.txt');
+console.log(normalizedPath); // "/dir1/dir3/file.txt"
+const path = require('path');
+const normalizedPath = path.normalize('/dir1/dir2/../dir3/./file.txt');
+console.log(normalizedPath); // "/dir1/dir3/file.txt"
+
+path.relative(): Bu işlev, iki dosya yolu arasındaki göreceli yolunu hesaplar.
+const path = require('path');
+const relativePath = path.relative('/dir1/dir2', '/dir1/dir3/file.txt');
+console.log(relativePath); // "../dir3/file.txt"
+
+Bu gibi işlevlerle birlikte, path modülü aynı zamanda dosya yolunu doğru bir şekilde biçimlendirmek için kullanılabilecek sabitler de sağlar. Örneğin, path.sep sabiti, kullanılan işletim sistemine uygun olan dizin ayırıcı karakterini belirtir.
+
